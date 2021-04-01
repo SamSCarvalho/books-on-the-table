@@ -71,18 +71,26 @@
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
-                                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dJb-CG-oix">
+                                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SectionHeader" id="dJb-CG-oix" customClass="SectionHeader" customModule="books_on_the_table" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LIDOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kmf-9P-fsp">
-                                                    <rect key="frame" x="0.0" y="13" width="50" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LIDOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kmf-9P-fsp">
+                                                    <rect key="frame" x="0.0" y="13" width="300" height="24"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                                     <color key="textColor" red="1" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="kmf-9P-fsp" secondAttribute="trailing" id="3dN-Ru-Vjb"/>
+                                                <constraint firstItem="kmf-9P-fsp" firstAttribute="top" secondItem="dJb-CG-oix" secondAttribute="top" constant="13" id="4z1-nr-GCE"/>
+                                                <constraint firstItem="kmf-9P-fsp" firstAttribute="leading" secondItem="dJb-CG-oix" secondAttribute="leading" id="bJG-F1-N4T"/>
+                                                <constraint firstAttribute="bottom" secondItem="kmf-9P-fsp" secondAttribute="bottom" constant="13" id="c2A-UR-kO3"/>
+                                            </constraints>
+                                            <connections>
+                                                <outlet property="titleLabel" destination="kmf-9P-fsp" id="zOJ-4T-0qI"/>
+                                            </connections>
                                         </collectionReusableView>
                                     </collectionView>
                                 </subviews>

@@ -28,7 +28,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UICollectionVie
         booksCollectionView.delegate = self
     }
     
-    // MARK: - UISearchBarDelegate
+    // MARK: - SearchBar
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
@@ -45,21 +45,30 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let celula = collectionView.dequeueReusableCell(withReuseIdentifier: "celulaLivro", for: indexPath) as! BookCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "celulaLivro", for: indexPath) as! BookCollectionViewCell
         
-        let livroAtual = listBooksBySection[0].books[indexPath.row]
+        let books = listBooksBySection[indexPath.section].books
+        let book = books[indexPath.row]
         
-        celula.tituloLabel.text = livroAtual.title
-        celula.autorLabel.text = livroAtual.author
-        celula.layer.borderWidth = 0.5
-        celula.layer.borderColor = UIColor(red: 85.0/255.0, green: 85.0/255.0, blue: 85.0/255.0, alpha: 1).cgColor
-        celula.layer.cornerRadius = 8
+        cell.tituloLabel.text = book.title
+        cell.autorLabel.text = book.author
+        cell.layer.borderWidth = 0.5
+        cell.layer.borderColor = UIColor(red: 85.0/255.0, green: 85.0/255.0, blue: 85.0/255.0, alpha: 1).cgColor
+        cell.layer.cornerRadius = 8
         
-        return celula
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.bounds.width / 3 - 15, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeader", for: indexPath) as! SectionHeader
+        
+        sectionHeader.titleLabel.text = listBooksBySection[indexPath.section].title.uppercased()
+        
+        return sectionHeader
     }
 }
 
