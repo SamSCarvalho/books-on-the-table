@@ -8,12 +8,18 @@
 import UIKit
 
 class SectionBooks: NSObject {
+
+    // MARK: - Atributes
+    
     let title: String
     let books: Array<Book>
+    
+    
+    // MARK: - LifeCycle
     
     init(title: String, books: Array<Book>) {
         self.title = title
         self.books = books
     }
-    
+
 }

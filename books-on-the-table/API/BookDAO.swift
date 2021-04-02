@@ -32,8 +32,9 @@ class BookDAO: NSObject {
         ]
         
         let listWithSectios = [
-            SectionBooks(title: "Lidos", books: books.filter {$0.status == 1 }),
-            SectionBooks(title: "Não lidos", books: books.filter {$0.status == 2 }),
+            SectionBooks(title: "Lendo", books: books.filter {$0.status == 1 }),
+            SectionBooks(title: "Para ler", books: books.filter {$0.status == 2 }),
+            SectionBooks(title: "Já lidos", books: books.filter {$0.status == 2 }),
         ]
         
         return listWithSectios
