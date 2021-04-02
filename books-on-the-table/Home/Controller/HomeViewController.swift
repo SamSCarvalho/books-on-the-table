@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate {
     
     // MARK: - Variables
     
@@ -17,6 +17,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewData
     
     @IBOutlet weak var searchInput: UISearchBar!
     @IBOutlet weak var tableBooks: UITableView!
+    @IBOutlet weak var addTabBar: UITabBar!
     
     // MARK: - LifeCycle
     
@@ -25,6 +26,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewData
         searchInput.delegate = self
         tableBooks.delegate = self
         tableBooks.dataSource = self
+        addTabBar.delegate = self
     }
     
     // MARK: - SearchBar
@@ -71,6 +73,16 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewData
         headerView.addSubview(label)
         
         return headerView
+    }
+    
+    // MARK: - TabBar
+    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        let storyboardBook = UIStoryboard(name:"Book", bundle: nil)
+        let viewController = storyboardBook.instantiateViewController(identifier: "formBook")
+        
+//        navigationController?.pushViewController(viewController, animated: true)
+        present(viewController, animated: true)
     }
     
 }
