@@ -11,8 +11,7 @@ class TableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionVi
     
     // MARK: - Variables
     
-    let listBooksBySection: Array<SectionBooks> = BookDAO().retornaTodosLivros()
-    var sectionIndex: Int = 0
+    var books: [Book] = []
     
     // MARK: - Outlets
     @IBOutlet weak var booksCollectionView: UICollectionView!
@@ -24,26 +23,22 @@ class TableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionVi
         super.awakeFromNib()
         booksCollectionView.dataSource = self
         booksCollectionView.delegate = self
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     // MARK: - Collection
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return listBooksBySection[section].books.count
+        return books.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "celulaLivro", for: indexPath) as! BookCollectionViewCell
-        
-        let books = listBooksBySection[sectionIndex].books
+
         let book = books[indexPath.row]
         
         cell.tituloLabel.text = book.title
@@ -57,13 +52,5 @@ class TableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.bounds.width / 3 - 15, height: 100)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeader", for: indexPath) as! SectionHeader
-        
-        sectionHeader.titleLabel.text = listBooksBySection[indexPath.section].title.uppercased()
-        
-        return sectionHeader
     }
 }

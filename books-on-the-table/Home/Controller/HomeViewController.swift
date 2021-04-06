@@ -12,6 +12,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewData
     // MARK: - Variables
     
     let listBooksBySection: Array<SectionBooks> = BookDAO().retornaTodosLivros()
+    var filter = ""
 
     // MARK: - Outlets
     
@@ -32,7 +33,8 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewData
     // MARK: - SearchBar
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        filter = searchText
+        tableBooks.reloadData()
     }
     
     // MARK: - TableView
@@ -48,7 +50,10 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! TableViewCell
         
-        cell.sectionIndex = indexPath.section
+        print(listBooksBySection[indexPath.section].getBooksFiltered(filter))
+        
+        cell.books = listBooksBySection[indexPath.section].getBooksFiltered(filter)
+        cell.booksCollectionView.reloadData()
         
         return cell
     }
