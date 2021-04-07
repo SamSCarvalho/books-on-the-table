@@ -41,7 +41,7 @@ extension Book {
     enum CodingKeys: String, CodingKey {
         case id
         case title
-        case author = "author_name"
+        case author
         case type = "genre"
         case status
     }

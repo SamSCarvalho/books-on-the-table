@@ -25,8 +25,7 @@ class SectionBooks: NSObject {
     
     // MARK: - Function
     
-    func getBooksFiltered(_ filter: String) -> [Book] {
-        print(filter)
+    func booksFiltered(_ filter: String) -> [Book] {
         if (filter == "") {
             return books
         }

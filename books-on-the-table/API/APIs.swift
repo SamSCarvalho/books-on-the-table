@@ -15,6 +15,8 @@ class APIs {
     
     // MARK: - Properties
     
-    
+    lazy var books: BookAPI = {
+        return BookAPI.init(with: apiUrl)
+    }()
     
 }

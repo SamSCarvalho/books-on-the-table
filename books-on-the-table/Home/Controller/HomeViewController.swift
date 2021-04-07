@@ -11,7 +11,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewData
     
     // MARK: - Variables
     
-    let listBooksBySection: Array<SectionBooks> = BookDAO().retornaTodosLivros()
+    var listBooksBySection: Array<SectionBooks> = BookDAO().retornaTodosLivros()
     var filter = ""
 
     // MARK: - Outlets
@@ -28,6 +28,15 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewData
         tableBooks.delegate = self
         tableBooks.dataSource = self
         addTabBar.delegate = self
+        
+        APIs().books.allBooks(token: "DEFE1931-073D-4A8F-92DA-E67C624D4DAA") { (result: Result<BookList, Error>) in
+            switch (result) {
+                case .success(_):
+                    print("aaa")
+                case .failure(_):
+                    print("teste")
+            }
+        }
     }
     
     // MARK: - SearchBar
@@ -50,9 +59,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! TableViewCell
         
-        print(listBooksBySection[indexPath.section].getBooksFiltered(filter))
-        
-        cell.books = listBooksBySection[indexPath.section].getBooksFiltered(filter)
+        cell.books = listBooksBySection[indexPath.section].booksFiltered(filter)
         cell.booksCollectionView.reloadData()
         
         return cell
@@ -86,7 +93,6 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewData
         let storyboardBook = UIStoryboard(name:"Book", bundle: nil)
         let viewController = storyboardBook.instantiateViewController(identifier: "formBook")
         
-//        navigationController?.pushViewController(viewController, animated: true)
         present(viewController, animated: true)
     }
     
