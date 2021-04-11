@@ -9,26 +9,34 @@ import UIKit
 
 struct Book: Codable {
     
-    enum Genre: String, Codable {
+    // MARK: - Genre ENUM
+    
+    enum Genre: String, Codable, CaseIterable {
         case horror = "Horror"
         case comedy = "Comedy"
         case drama = "Drama"
         case fantasy = "Fantasy"
     }
     
-    enum Status: String, Codable {
+    // MARK: - Status ENUM
+    
+    enum Status: String, Codable, CaseIterable {
         case reading = "Reading"
         case done = "Done"
         case toRead = "To Read"
     }
     
-    let id: String
+    // MARK: - Atributes
+    
+    let id: String?
     let title: String
     let author: String
     let type: Genre
     let status: Status
     
-    init(id: String, title: String, author: String, type: Genre, status: Status) {
+    // MARK: - Constructor
+    
+    init(id: String? = nil, title: String, author: String, type: Genre, status: Status) {
         self.id = id
         self.title = title
         self.author = author
@@ -36,6 +44,8 @@ struct Book: Codable {
         self.status = status
     }
 }
+
+// MARK: - Extension
 
 extension Book {
     enum CodingKeys: String, CodingKey {

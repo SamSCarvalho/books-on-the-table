@@ -8,8 +8,12 @@
 import Foundation
 
 struct BookList: Codable {
+    // MARK: - Atributes
+    
     let bookList: [Book]
 }
+
+// MARK: - Extension
 
 extension BookList {
     enum CodingKeys: String, CodingKey {

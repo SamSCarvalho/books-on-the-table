@@ -12,6 +12,7 @@ class TableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionVi
     // MARK: - Variables
     
     var books: [Book] = []
+    var controller: UIViewController? = nil
     
     // MARK: - Outlets
     @IBOutlet weak var booksCollectionView: UICollectionView!
@@ -52,5 +53,17 @@ class TableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.bounds.width / 3 - 15, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print(books[indexPath.row])
+        
+        let storyboardBook = UIStoryboard(name:"Book", bundle: nil)
+        let viewController = storyboardBook.instantiateViewController(identifier: "infoBook")
+        
+        guard let fatherController = controller else { return }
+        
+        fatherController.present(viewController, animated: true)
     }
 }

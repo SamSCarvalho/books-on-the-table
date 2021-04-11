@@ -16,12 +16,16 @@ class BookAPI {
         self.api = API(rootUrl)
     }
     
+    // MARK: - HEADERS
+    
     func headers(with token: String) -> [String: String] {
         return [
             "Content-Type": "application/json",
             "Authorization": "Bearer \(token)"
         ]
     }
+    
+    // MARK: - GET ALL
     
     func allBooks(token: String, page: Int = 0, perPage: Int = 200, completion: @escaping ((Result<BookList, Error>) -> Void), retryAttempts: Int = 0) {
 
@@ -33,11 +37,27 @@ class BookAPI {
                 retryAttempts: retryAttempts)
     }
     
+    // MARK: - CREATE
+    
     func create(book: Book, token: String) {
         
-//        let targetUrl = ""
+        let targetUrl = "/books"
         
-        // TO-DO api.post
+        if let encoded = try? JSONEncoder().encode(book) {
+            print(encoded)
+            
+            api.post(targetUrl: targetUrl,
+                     requestData: encoded,
+                     requestHeaders: headers(with: token),
+                     completionHandler: { (result: Result<BookList, Error>) in
+                switch (result) {
+                    case .success(let response):
+                        print("response: \(response)")
+                    case .failure(let error):
+                        print("returned error: \(error)")
+                }
+            }, retryAttempts: 0)
+        }
     }
     
 }
