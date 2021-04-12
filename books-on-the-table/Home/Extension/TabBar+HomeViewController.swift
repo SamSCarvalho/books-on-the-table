@@ -12,10 +12,8 @@ extension HomeViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         let storyboardBook = UIStoryboard(name:"Book", bundle: nil)
         let viewController = storyboardBook.instantiateViewController(identifier: "formBook")
+
+        present(viewController, animated: true)
         
-        let context = CoreDataStack(containerName: "Model").persistentContainer.viewContext
-        let result = EntityBook.all(in: context)
-        print(result)
-//        present(viewController, animated: true)
     }
 }

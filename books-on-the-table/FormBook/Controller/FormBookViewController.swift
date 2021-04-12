@@ -44,7 +44,7 @@ class FormBookViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         let newBook = Book(title: title, author: author, type: type, status: status)
         
-        APIs().books.create(book: newBook, token: "60EE466E-3DBE-473E-B60E-F0C8773978E1")
+        APIs().books.create(book: newBook, token: "E325765F-51F9-48F6-BE97-1C1189E2013F")
 
         dismiss(animated: true)
     }

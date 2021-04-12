@@ -12,7 +12,7 @@ class BookAPI {
     
     let api: API
     
-    init(with rootUrl: String) {
+    init(with rootUrl: String = BooksConstants.kBooksApiUrl) {
         self.api = API(rootUrl)
     }
     

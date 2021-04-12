@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--User View Controller-->
+        <scene sceneID="eOd-dl-LCL">
+            <objects>
+                <viewController storyboardIdentifier="login" id="xCf-XY-Bhz" customClass="UserViewController" customModule="books_on_the_table" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WMF-aS-BMd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAt-nM-bjK" customClass="LoginFieldsView" customModule="books_on_the_table" customModuleProvider="target">
+                                <rect key="frame" x="24" y="344" width="366" height="208"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="208" id="1Ho-fe-34g"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="loginFieldTitle" value="Login"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="passwordFieldTitle" value="Password"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="loginButtonTitle" value="Enter"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKc-cJ-Kgx">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Books On The Table" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApB-Lv-Llz">
+                                        <rect key="frame" x="80.5" y="71.5" width="253" height="37"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="27"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.56470588239999997" blue="0.31764705879999999" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ApB-Lv-Llz" firstAttribute="centerX" secondItem="HKc-cJ-Kgx" secondAttribute="centerX" id="JUh-yh-4g5"/>
+                                    <constraint firstAttribute="height" constant="180" id="is9-ce-hku"/>
+                                    <constraint firstItem="ApB-Lv-Llz" firstAttribute="centerY" secondItem="HKc-cJ-Kgx" secondAttribute="centerY" id="xa7-PL-qSA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="52b-Bf-aaX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HKc-cJ-Kgx" firstAttribute="leading" secondItem="52b-Bf-aaX" secondAttribute="leading" id="RIP-o5-4sv"/>
+                            <constraint firstItem="iAt-nM-bjK" firstAttribute="centerX" secondItem="WMF-aS-BMd" secondAttribute="centerX" id="UOy-xB-Sf6"/>
+                            <constraint firstItem="52b-Bf-aaX" firstAttribute="trailing" secondItem="HKc-cJ-Kgx" secondAttribute="trailing" id="cYy-f5-FiK"/>
+                            <constraint firstItem="iAt-nM-bjK" firstAttribute="leading" secondItem="52b-Bf-aaX" secondAttribute="leading" constant="24" id="dfE-Ej-9nv"/>
+                            <constraint firstItem="52b-Bf-aaX" firstAttribute="trailing" secondItem="iAt-nM-bjK" secondAttribute="trailing" constant="24" id="lw3-7x-m7H"/>
+                            <constraint firstItem="iAt-nM-bjK" firstAttribute="centerY" secondItem="WMF-aS-BMd" secondAttribute="centerY" id="nyU-Ls-ipu"/>
+                            <constraint firstItem="HKc-cJ-Kgx" firstAttribute="top" secondItem="WMF-aS-BMd" secondAttribute="top" id="vct-Ww-DlG"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wYQ-aa-VEJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-407.24637681159425" y="132.58928571428572"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -57,10 +57,9 @@ class TableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        print(books[indexPath.row])
-        
         let storyboardBook = UIStoryboard(name:"Book", bundle: nil)
-        let viewController = storyboardBook.instantiateViewController(identifier: "infoBook")
+        guard let viewController = storyboardBook.instantiateViewController(identifier: "infoBook") as? InfoBookViewController else { return }
+        viewController.book = books[indexPath.row]
         
         guard let fatherController = controller else { return }
         

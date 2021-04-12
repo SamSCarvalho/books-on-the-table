@@ -16,7 +16,16 @@ class APIs {
     // MARK: - Properties
     
     lazy var books: BookAPI = {
-        return BookAPI.init(with: apiUrl)
+        return BookAPI.init()
     }()
+    
+    lazy var token: TokenAPI = {
+        return TokenAPI.init()
+    }()
+    
+    lazy var users: UsersAPI = {
+        return UsersAPI.init()
+    }()
+      
     
 }
