@@ -8,27 +8,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--User View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="eOd-dl-LCL">
             <objects>
-                <viewController storyboardIdentifier="login" id="xCf-XY-Bhz" customClass="UserViewController" customModule="books_on_the_table" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WMF-aS-BMd">
+                <viewController storyboardIdentifier="login" id="xCf-XY-Bhz" customClass="LoginViewController" customModule="books_on_the_table" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WMF-aS-BMd" customClass="LoginView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAt-nM-bjK" customClass="LoginFieldsView" customModule="books_on_the_table" customModuleProvider="target">
-                                <rect key="frame" x="24" y="344" width="366" height="208"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="208" id="1Ho-fe-34g"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="loginFieldTitle" value="Login"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="passwordFieldTitle" value="Password"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="loginButtonTitle" value="Enter"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKc-cJ-Kgx">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKc-cJ-Kgx" userLabel="Header">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Books On The Table" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApB-Lv-Llz">
@@ -45,6 +33,18 @@
                                     <constraint firstItem="ApB-Lv-Llz" firstAttribute="centerY" secondItem="HKc-cJ-Kgx" secondAttribute="centerY" id="xa7-PL-qSA"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAt-nM-bjK" customClass="LoginFieldsView" customModule="books_on_the_table" customModuleProvider="target">
+                                <rect key="frame" x="24" y="344" width="366" height="208"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="208" id="1Ho-fe-34g"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="loginFieldTitle" value="Login"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="passwordFieldTitle" value="Password"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="loginButtonTitle" value="Enter"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="52b-Bf-aaX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -58,6 +58,9 @@
                             <constraint firstItem="HKc-cJ-Kgx" firstAttribute="top" secondItem="WMF-aS-BMd" secondAttribute="top" id="vct-Ww-DlG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginFields" destination="iAt-nM-bjK" id="xXa-yc-Dhg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wYQ-aa-VEJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

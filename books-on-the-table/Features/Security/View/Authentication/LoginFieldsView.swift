@@ -67,7 +67,4 @@ class LoginFieldsView: XibView {
         let credential = LoginCredential(login: login, password: password)
         delegate?.loginFieldsView(self, didProvide: credential)
     }
-    
-    
-    
 }

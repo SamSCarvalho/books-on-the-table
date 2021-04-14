@@ -12,4 +12,16 @@ struct User: Codable {
     let email: String
     let password: String?
     
+    init(name: String, email: String, password: String?) {
+        self.name = name
+        self.email = email
+        self.password = password
+    }
+    
+    init(with credential: LoginCredential) {
+        self.name = ""
+        self.email = credential.login
+        self.password = credential.password
+    }
+    
 }

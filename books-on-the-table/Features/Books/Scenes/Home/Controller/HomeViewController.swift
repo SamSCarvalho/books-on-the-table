@@ -12,6 +12,7 @@ class HomeViewController: UIViewController {
     // MARK: - Variables
     
     var listBooksBySection: Array<SectionBooks> = []
+    var token : Token? = nil
     var filter = ""
 
     // MARK: - Outlets
@@ -45,7 +46,9 @@ class HomeViewController: UIViewController {
         let stack = CoreDataStack(containerName: "Model")
         let context = stack.persistentContainer.viewContext
         
-        APIs().books.allBooks(token: "E325765F-51F9-48F6-BE97-1C1189E2013F") { (result: Result<BookList, Error>) in
+        guard  let tokenObject = token else { return }
+        
+        APIs().books.allBooks(token: tokenObject.token ) { (result: Result<BookList, Error>) in
             switch (result) {
                 case .success(let returnedBookList):
                     let bookList = returnedBookList.bookList
