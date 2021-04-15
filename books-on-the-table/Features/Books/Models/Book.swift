@@ -29,10 +29,10 @@ struct Book: Codable {
     // MARK: - Atributes
     
     let id: String?
-    let title: String
-    let author: String
-    let type: Genre
-    let status: Status
+    var title: String
+    var author: String
+    var type: Genre
+    var status: Status
     
     // MARK: - Constructor
     

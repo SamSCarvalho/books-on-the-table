@@ -12,8 +12,11 @@ extension HomeViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         let storyboardBook = UIStoryboard(name:"Book", bundle: nil)
         let viewController = storyboardBook.instantiateViewController(identifier: "formBook")
+        
+        guard let formViewController = viewController as? FormBookViewController else { return }
+        formViewController.token = token
 
-        present(viewController, animated: true)
+        present(formViewController, animated: true)
         
     }
 }

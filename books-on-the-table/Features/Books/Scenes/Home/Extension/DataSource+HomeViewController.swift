@@ -21,6 +21,7 @@ extension HomeViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! TableViewCell
         
         cell.books = listBooksBySection[indexPath.section].booksFiltered(filter)
+        cell.token = token
         cell.booksCollectionView.reloadData()
         cell.controller = self
         

@@ -13,6 +13,7 @@ class TableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionVi
     
     var books: [Book] = []
     var controller: UIViewController? = nil
+    var token: Token? = nil
     
     // MARK: - Outlets
     @IBOutlet weak var booksCollectionView: UICollectionView!
@@ -60,6 +61,7 @@ class TableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionVi
         let storyboardBook = UIStoryboard(name:"Book", bundle: nil)
         guard let viewController = storyboardBook.instantiateViewController(identifier: "infoBook") as? InfoBookViewController else { return }
         viewController.book = books[indexPath.row]
+        viewController.token = token
         
         guard let fatherController = controller else { return }
         

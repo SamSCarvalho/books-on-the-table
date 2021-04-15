@@ -9,13 +9,40 @@ import UIKit
 
 class SecurityCoordinator {
     
-    // Properties
+    // MARK: - Constants
+    
+    let kTokenKey = "securityToken"
+    
+    //MARK: - Properties
     
     let navigationController: UINavigationController
     
-    public private(set) var token: Token?
+//    public private(set) var token: Token?
     
-    weak var mainCoordinatorDelegate: MainCoordinadorDelegate?
+    weak var securityCoordinatorDelegate: SecurityCoordinatorDelegate?
+    
+    let keychain = KeychainSwift()
+    
+    public private(set) var token: Token? {
+        get {
+            var token: Token?
+            if let tokenData = keychain.getData(kTokenKey) {
+                let decoder = JSONDecoder()
+                token = try? decoder.decode(Token.self, from: tokenData)
+            }
+            return token
+        }
+        set {
+            let encoder = JSONEncoder()
+            if let token = newValue,
+               let tokenData = try? encoder.encode(token) {
+                keychain.set(tokenData, forKey: kTokenKey)
+            } else {
+                keychain.delete(kTokenKey)
+            }
+        }
+    }
+    
     
     // MARK: - Init
     
@@ -48,8 +75,7 @@ extension SecurityCoordinator: LoginSceneDelegate {
     
     func loginScene(_ loginScene: LoginViewController, didAuthenticateWith token: Token) {
         self.token = token
-        debugPrint("@ Received Token: \(token)")
-        mainCoordinatorDelegate?.initialScene()
+        securityCoordinatorDelegate?.successAuth()
     }
     
 }

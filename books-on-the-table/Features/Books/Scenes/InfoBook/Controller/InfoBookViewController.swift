@@ -11,6 +11,8 @@ class InfoBookViewController: UIViewController {
     
     // MARK: - Variables
     var book: Book? = nil
+    let statusArray = Book.Status.allCases
+    var token : Token? = nil
     
     // MARK: - Outlets
     
@@ -32,17 +34,17 @@ class InfoBookViewController: UIViewController {
         statusBookLabel.text = bookSelected.status.rawValue
         
         switch bookSelected.status {
-        case .done:
-            markButton.isEnabled = false
-            markButton.backgroundColor = .lightGray
-            markButton.setTitle("LIVRO JÁ LIDO", for: .disabled)
-            break
-        case .reading:
-            markButton.setTitle("MARCAR COMO LIDO", for: .normal)
-            break
-        case .toRead:
-            markButton.setTitle("MARCAR COMO LENDO", for: .normal)
-            break
+            case .done:
+                markButton.isEnabled = false
+                markButton.backgroundColor = .lightGray
+                markButton.setTitle("LIVRO JÁ LIDO", for: .disabled)
+                break
+            case .reading:
+                markButton.setTitle("MARCAR COMO LIDO", for: .normal)
+                break
+            case .toRead:
+                markButton.setTitle("MARCAR COMO LENDO", for: .normal)
+                break
         }
         
     }
@@ -50,8 +52,26 @@ class InfoBookViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func markAsReadBook() {
-        print("change book to read")
+        guard var bookSelected = book else { return }
+        
+        switch bookSelected.status {
+            case .toRead:
+                bookSelected.status = .reading
+            case .reading:
+                bookSelected.status = .done
+            default:
+                break
+        }
+        
+        guard let bookId = bookSelected.id else { return }
+        
+        guard let token = token?.token else { return }
+        
+        APIs().books.update(book: bookSelected, bookId: bookId, token: token)
+        
+        dismiss(animated: true)
     }
+    
     @IBAction func backButton() {
         dismiss(animated: true)
     }

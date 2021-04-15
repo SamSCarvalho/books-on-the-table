@@ -12,6 +12,7 @@ class FormBookViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     // MARK: - Variables
     let typesArray = Book.Genre.allCases
     let statusArray = Book.Status.allCases
+    var token : Token? = nil
 
     // MARK: - Outlets
 
@@ -44,7 +45,9 @@ class FormBookViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         let newBook = Book(title: title, author: author, type: type, status: status)
         
-        APIs().books.create(book: newBook, token: "E325765F-51F9-48F6-BE97-1C1189E2013F")
+        guard let token = token?.token else { return }
+        
+        APIs().books.create(book: newBook, token: token)
 
         dismiss(animated: true)
     }

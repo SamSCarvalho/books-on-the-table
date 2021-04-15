@@ -42,10 +42,9 @@ class BookAPI {
     func create(book: Book, token: String) {
         
         let targetUrl = "/books"
+
         
         if let encoded = try? JSONEncoder().encode(book) {
-            print(encoded)
-            
             api.post(targetUrl: targetUrl,
                      requestData: encoded,
                      requestHeaders: headers(with: token),
@@ -57,6 +56,28 @@ class BookAPI {
                         print("returned error: \(error)")
                 }
             }, retryAttempts: 0)
+        }
+    }
+    
+    // MARK: - UPDATE
+    
+    func update(book: Book, bookId: String, token: String) {
+        
+        let targetUrl = "/books/\(bookId)"
+
+        if let encoded = try? JSONEncoder().encode(book) {
+            api.put(targetUrl: targetUrl,
+                    requestData: encoded,
+                    requestHeaders: headers(with: token),
+                    completionHandler: { (result: Result<Book, Error>) in
+                        switch (result) {
+                            case .success(let response):
+                                debugPrint("response success updated: \(response)")
+                            case .failure(let error):
+                                debugPrint("returned error: \(error)")
+                        }
+                    },
+                    retryAttempts: 0)
         }
     }
     

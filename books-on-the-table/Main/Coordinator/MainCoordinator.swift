@@ -33,14 +33,10 @@ class MainCoordinator {
             booksCoordinator.token = token
             booksCoordinator.start()
         } else {
-            securityCoordinator.mainCoordinatorDelegate = self
+            securityCoordinator.securityCoordinatorDelegate = self
             securityCoordinator.start()
         }
     }
-}
-
-
-extension MainCoordinator: MainCoordinadorDelegate {
     
     func initialScene() {
         let token = securityCoordinator.token
@@ -51,5 +47,11 @@ extension MainCoordinator: MainCoordinadorDelegate {
             securityCoordinator.start()
         }
     }
-    
+}
+
+
+extension MainCoordinator: SecurityCoordinatorDelegate {
+    func successAuth() {
+        initialScene()
+    }
 }
