@@ -75,4 +75,18 @@ class InfoBookViewController: UIViewController {
     @IBAction func backButton() {
         dismiss(animated: true)
     }
+    
+    @IBAction func deleteBook() {
+
+        guard let bookSelected = book else { return }
+        
+        guard let bookId = bookSelected.id else { return }
+        
+        guard let token = token?.token else { return }
+        
+        
+        APIs().books.delete(bookId: bookId, token: token)
+        
+        dismiss(animated: true)
+    }
 }

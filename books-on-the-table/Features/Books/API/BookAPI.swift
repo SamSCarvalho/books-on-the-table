@@ -81,4 +81,22 @@ class BookAPI {
         }
     }
     
+    // MARK: - DELETE
+    
+    func delete(bookId: String, token: String) {
+        
+        let targetUrl = "/books/\(bookId)"
+        
+        api.delete(targetUrl: targetUrl,
+                   requestHeaders: headers(with: token),
+                   completionHandler: { (result: Result<Book, Error>) in
+                       switch (result) {
+                           case .success(let response):
+                               debugPrint("response success updated: \(response)")
+                           case .failure(let error):
+                               debugPrint("returned error: \(error)")
+                       }
+                   },
+                   retryAttempts: 0)
+    }
 }
